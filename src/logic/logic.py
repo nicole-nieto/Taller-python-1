@@ -1,5 +1,6 @@
 class Logica:
     """afg """ 
+    
     def AND(self, a, b):
         return a and b
     
