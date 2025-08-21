@@ -19,12 +19,12 @@ class Data:
         return -1
     
     def eliminar_duplicados(self, lista):
-        # Crear una lista nueva y añadir solo si no se ha agregado antes
-        resultado = []
-        for item in lista:
-            if item not in resultado:
-                resultado.append(item)
-        return resultado
+        lista_sin_duplicados = []
+        for elemento in lista:
+            if elemento not in lista_sin_duplicados:
+                lista_sin_duplicados.append(elemento)
+        return lista_sin_duplicados
+
     
     def merge_ordenado(self, lista1, lista2):
         # Combinar usando el patrón "dos punteros"
@@ -40,11 +40,19 @@ class Data:
         resultado.extend(lista1[i:])
         resultado.extend(lista2[j:])
         return resultado
+
+def rotar_lista(self, lista, k):
+    if not lista:
+        return []
+    n = len(lista)
+    k = k % n  # Maneja rotaciones mayores al tamaño de la lista
+    # Divide la lista en dos partes: los últimos k elementos y los primeros n-k
+    # Luego los une en el orden correcto
+    parte_final = lista[n-k:]
+    parte_inicial = lista[:n-k]
     
-    def rotar_lista(self, lista, k):
-        n = len(lista)
-        k = k % n  # en caso de que k sea mayor al tamaño
-        return lista[-k:] + lista[:-k]
+    return parte_final + parte_inicial  
+
     
     def encuentra_numero_faltante(self, lista):
         # Usamos la fórmula de la suma de 1..n y restamos la suma de la lista
@@ -75,12 +83,11 @@ class Data:
             "peek": lambda: cola[0] if cola else None,
             "is_empty": lambda: len(cola) == 0
         }
+
     
     def matriz_transpuesta(self, matriz):
-        filas = len(matriz)
-        columnas = len(matriz[0])
-        transpuesta = [[0] * filas for _ in range(columnas)]
-        for i in range(filas):
-            for j in range(columnas):
-                transpuesta[j][i] = matriz[i][j]
-        return transpuesta
+        if not matriz or not matriz[0]:
+            return []
+        # Usamos zip() para agrupar los elementos de cada columna y luego
+        # creamos una lista de listas con el resultado.
+        return [list(fila) for fila in zip(*matriz)]
