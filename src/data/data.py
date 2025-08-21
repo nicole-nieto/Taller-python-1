@@ -1,4 +1,4 @@
-#data
+#corrigiendo errores en las pruebas de data.py
 class Data:
 
     

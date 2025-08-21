@@ -75,3 +75,5 @@ class Conversion:
             '---..': '8', '----.': '9'
         }
         return ''.join(morse_dict[code] for code in morse.split() if code in morse_dict)
+        pass
+    
