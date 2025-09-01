@@ -1,7 +1,7 @@
 #corrigiendo errores en las pruebas de data.py
 class Data:
 
-    
+
     def invertir_lista(self, lista):
         # Usamos dos punteros: uno al inicio y otro al final, intercambiamos hasta la mitad
         inicio, fin = 0, len(lista) - 1
@@ -18,13 +18,15 @@ class Data:
                 return i
         return -1
     
-    def eliminar_duplicados(self, lista):
-        lista_sin_duplicados = []
-        for elemento in lista:
-            if elemento not in lista_sin_duplicados:
-                lista_sin_duplicados.append(elemento)
-        return lista_sin_duplicados
-
+    class Data:
+        def eliminar_duplicados(self, lista):
+            resultado = []
+            vistos = []
+            for elem in lista:
+                if elem not in vistos:
+                    resultado.append(elem)
+                    vistos.append(elem)
+            return resultado
     
     def merge_ordenado(self, lista1, lista2):
         # Combinar usando el patrón "dos punteros"
@@ -41,19 +43,18 @@ class Data:
         resultado.extend(lista2[j:])
         return resultado
 
-def rotar_lista(self, lista, k):
-    if not lista:
-        return []
-    n = len(lista)
-    k = k % n  # Maneja rotaciones mayores al tamaño de la lista
-    # Divide la lista en dos partes: los últimos k elementos y los primeros n-k
-    # Luego los une en el orden correcto
-    parte_final = lista[n-k:]
-    parte_inicial = lista[:n-k]
-    
-    return parte_final + parte_inicial  
+    def rotar_lista(self, lista, k):
+        if not lista:
+            return []
+        n = len(lista)
+        k = k % n  # Maneja rotaciones mayores al tamaño de la lista
+        # Divide la lista en dos partes: los últimos k elementos y los primeros n-k
+        # Luego los une en el orden correcto
+        parte_final = lista[n-k:]
+        parte_inicial = lista[:n-k]
+        
+        return parte_final + parte_inicial  
 
-    
     def encuentra_numero_faltante(self, lista):
         # Usamos la fórmula de la suma de 1..n y restamos la suma de la lista
         n = len(lista) + 1  # porque falta un número
