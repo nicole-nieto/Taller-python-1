@@ -43,43 +43,37 @@ class Games:
         else:
             return "muy bajo"
     
+    
     def ta_te_ti_ganador(self, tablero):
-    # Funciones auxiliares para revisar filas, columnas y diagonales
-        def revisar_linea(linea):
-            if linea[0] != " " and linea[0] == linea[1] == linea[2]:
-                return linea[0]
-            return None
-        
-        # Revisa filas
+        """
+        Verifica si hay un ganador en un tablero de tic-tac-toe.
+        """
+        # Revisar filas
         for fila in tablero:
-            ganador = revisar_linea(fila)
-            if ganador:
-                return ganador
-                
-        # Revisa columnas
-        for j in range(3):
-            columna = [tablero[i][j] for i in range(3)]
-            ganador = revisar_linea(columna)
-            if ganador:
-                return ganador
-                
-        # Revisa diagonales
-        diagonal1 = [tablero[i][i] for i in range(3)]
-        ganador = revisar_linea(diagonal1)
-        if ganador:
-            return ganador
-            
-        diagonal2 = [tablero[i][2-i] for i in range(3)]
-        ganador = revisar_linea(diagonal2)
-        if ganador:
-            return ganador
-            
-        # Revisa si hay un empate (no hay espacios vacíos)
+            if fila[0] != " " and fila[0] == fila[1] == fila[2]:
+                return fila[0]
+
+        # Revisar columnas
+        for col in range(3):
+            if tablero[0][col] != " " and tablero[0][col] == tablero[1][col] == tablero[2][col]:
+                return tablero[0][col]
+
+        # Revisar diagonal principal
+        if tablero[0][0] != " " and tablero[0][0] == tablero[1][1] == tablero[2][2]:
+            return tablero[0][0]
+
+        # Revisar diagonal secundaria
+        if tablero[0][2] != " " and tablero[0][2] == tablero[1][1] == tablero[2][0]:
+            return tablero[0][2]
+
+        # Verificar si hay espacios vacíos
         for fila in tablero:
             if " " in fila:
-                return "continua" # Todavía hay movimientos disponibles
-                
-        return "empate" # No hay ganador y el tablero está lleno
+                return "continua"
+
+        # Si no hay vacíos y nadie ganó → empate
+        return "empate"
+
     
     def generar_combinacion_mastermind(self, longitud, colores_disponibles):
         return [random.choice(colores_disponibles) for _ in range(longitud)]
