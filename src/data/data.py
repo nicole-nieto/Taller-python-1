@@ -18,15 +18,13 @@ class Data:
                 return i
         return -1
     
-    class Data:
-        def eliminar_duplicados(self, lista):
-            resultado = []
-            vistos = []
-            for elem in lista:
-                if elem not in vistos:
-                    resultado.append(elem)
-                    vistos.append(elem)
-            return resultado
+    def eliminar_duplicados(self, lista):
+        # Convertimos la lista a un conjunto para eliminar duplicados.
+        # Un conjunto es una colección de elementos únicos y desordenados.
+        conjunto_sin_duplicados = set(lista)
+        # Convertimos el conjunto de nuevo a una lista para mantener la estructura deseada.
+        lista_sin_duplicados = list(conjunto_sin_duplicados)
+        return lista_sin_duplicados
     
     def merge_ordenado(self, lista1, lista2):
         # Combinar usando el patrón "dos punteros"
