@@ -4,17 +4,36 @@ import random
 class Games:
         
     def piedra_papel_tijera(self, jugador1, jugador2):
-        """Determina el ganador del juego piedra, papel o tijera."""
-        # Si las elecciones son iguales, es un empate
-        if jugador1 == jugador2:
+        """
+        Determina el ganador del juego piedra, papel o tijera.
+        """
+        # Normalizar entradas (ignorar mayúsculas/minúsculas)
+        j1 = jugador1.lower()
+        j2 = jugador2.lower()
+
+        # Opciones válidas
+        opciones = ["piedra", "papel", "tijera"]
+
+        # Validar entradas
+        if j1 not in opciones or j2 not in opciones:
+            return "invalid"
+
+        # Caso de empate
+        if j1 == j2:
             return "empate"
-        # Casos donde gana el jugador 1
-        if (jugador1 == "piedra" and jugador2 == "tijera") or \
-        (jugador1 == "tijera" and jugador2 == "papel") or \
-        (jugador1 == "papel" and jugador2 == "piedra"):
+
+        # Reglas de victoria
+        reglas = {
+            "piedra": "tijera",   # piedra vence a tijera
+            "tijera": "papel",    # tijera vence a papel
+            "papel": "piedra"     # papel vence a piedra
+        }
+
+        if reglas[j1] == j2:
             return "jugador1"
-        # Si no es empate y no gana el jugador 1, entonces gana el jugador 2
-        return "jugador2"
+        else:
+            return "jugador2"
+
     
     def adivinar_numero_pista(self, numero_secreto, intento):
         if intento == numero_secreto:
