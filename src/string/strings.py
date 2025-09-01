@@ -119,14 +119,11 @@ class Strings:
         return self.cifrar_cesar(texto, -desplazamiento)
     
     def encontrar_subcadena(self, texto, subcadena):
-        """
-        Encuentra todas las posiciones de una subcadena en un texto sin usar find() o index().
-        """
+        if not subcadena:  # Si la subcadena es vacía
+            return []
+
         posiciones = []
-        len_texto = len(texto)
-        len_subcadena = len(subcadena)
-        
-        for i in range(len_texto - len_subcadena + 1):
-            if texto[i:i+len_subcadena] == subcadena:
+        for i in range(len(texto) - len(subcadena) + 1):
+            if texto[i:i + len(subcadena)] == subcadena:
                 posiciones.append(i)
         return posiciones
