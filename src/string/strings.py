@@ -64,11 +64,8 @@ class Strings:
         return texto.title()
     
     def eliminar_espacios_duplicados(self, texto):
-        """
-        Elimina espacios duplicados en una cadena.
-        """
-        palabras = texto.split()
-        return " ".join(palabras)
+        return " ".join(texto.split(" "))
+
     
     def es_numero_entero(self, texto):
         """
