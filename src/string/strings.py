@@ -63,8 +63,15 @@ class Strings:
         """
         return texto.title()
     
+    import re
+
     def eliminar_espacios_duplicados(self, texto):
-        return " ".join(texto.split(" "))
+        """
+        Elimina espacios duplicados en una cadena.
+        """
+        # Reemplaza grupos de 2 o más espacios por uno solo
+        return re.sub(r' {2,}', ' ', texto)
+
 
     
     def es_numero_entero(self, texto):
