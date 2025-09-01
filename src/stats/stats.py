@@ -13,22 +13,20 @@ class Stats:
     def mediana(self, numeros):
         """
         Encuentra el valor mediano de una lista de números.
+        Retorna 0 si la lista está vacía.
         """
-        if not numeros:
-            return None
-        
+        if not numeros:  # lista vacía
+            return 0
+
         numeros_ordenados = sorted(numeros)
         n = len(numeros_ordenados)
-        indice_medio = n // 2
-        
-        if n % 2 == 1:
-            # Si la lista tiene un número impar de elementos
-            return float(numeros_ordenados[indice_medio])
-        else:
-            # Si la lista tiene un número par de elementos
-            valor1 = numeros_ordenados[indice_medio - 1]
-            valor2 = numeros_ordenados[indice_medio]
-            return (valor1 + valor2) / 2.0
+        mitad = n // 2
+
+        if n % 2 == 0:  # cantidad par → promedio de los dos del medio
+            return (numeros_ordenados[mitad - 1] + numeros_ordenados[mitad]) / 2
+        else:  # cantidad impar → el del medio
+            return float(numeros_ordenados[mitad])
+
     
     def moda(self, numeros):
         """
