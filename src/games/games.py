@@ -78,39 +78,37 @@ class Games:
     def generar_combinacion_mastermind(self, longitud, colores_disponibles):
         return [random.choice(colores_disponibles) for _ in range(longitud)]
     
+    
     def validar_movimiento_torre_ajedrez(self, desde_fila, desde_col, hasta_fila, hasta_col, tablero):
-        # 1. Movimiento válido: la torre debe moverse en línea recta
-        # Horizontal
-        es_horizontal = (desde_fila == hasta_fila) and (desde_col != hasta_col)
-        # Vertical
-        es_vertical = (desde_col == hasta_col) and (desde_fila != hasta_fila)
+        """
+        Valida si un movimiento de torre en ajedrez es legal.
+        """
+        # Verificar que las posiciones están dentro del tablero
+        if not (0 <= desde_fila < 8 and 0 <= desde_col < 8 and 
+                0 <= hasta_fila < 8 and 0 <= hasta_col < 8):
+            return False
 
-        if not es_horizontal and not es_vertical:
-            return False # No es un movimiento horizontal ni vertical
-            
-        # 2. No puede haber piezas en el camino (revisar casillas intermedias)
-        
+        # No se permite mover a la misma casilla
+        if desde_fila == hasta_fila and desde_col == hasta_col:
+            return False
+
+        # La torre solo puede moverse en fila o columna
+        if desde_fila != hasta_fila and desde_col != hasta_col:
+            return False
+
         # Movimiento horizontal
-        if es_horizontal:
+        if desde_fila == hasta_fila:
             paso = 1 if hasta_col > desde_col else -1
             for col in range(desde_col + paso, hasta_col, paso):
                 if tablero[desde_fila][col] != " ":
-                    return False # Hay una pieza en el camino
-                    
+                    return False
+
         # Movimiento vertical
-        if es_vertical:
+        if desde_col == hasta_col:
             paso = 1 if hasta_fila > desde_fila else -1
             for fila in range(desde_fila + paso, hasta_fila, paso):
                 if tablero[fila][desde_col] != " ":
-                    return False # Hay una pieza en el camino
-                    
-        # 3. La casilla de destino no puede tener una pieza del mismo color
-        # Suponiendo que las piezas se representan por un carácter y los espacios vacíos por " "
-        pieza_origen = tablero[desde_fila][desde_col]
-        pieza_destino = tablero[hasta_fila][hasta_col]
-        
-        # Esta parte es una suposición de cómo se manejan los colores,
-        # pero es un buen punto a considerar para la lógica completa.
-        # Por ahora, solo validaremos que el camino esté libre.
-        
+                    return False
+
+        # Si pasó todas las validaciones → válido
         return True
