@@ -69,9 +69,17 @@ class Strings:
         """
         Elimina espacios duplicados en una cadena.
         """
-        # Reemplaza grupos de 2 o más espacios por uno solo
-        return re.sub(r' {2,}', ' ', texto)
-
+        resultado = []
+        espacio_prev = False
+        for ch in texto:
+            if ch == " ":
+                if not espacio_prev:
+                    resultado.append(ch)
+                espacio_prev = True
+            else:
+                resultado.append(ch)
+                espacio_prev = False
+        return "".join(resultado)
 
     
     def es_numero_entero(self, texto):
