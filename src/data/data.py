@@ -19,7 +19,7 @@ class Data:
         return -1
     
 
-    def eliminar_duplicados(lista):
+    def eliminar_duplicados(self, lista):
         resultado = []
         vistos = []
         for elem in lista:
