@@ -288,9 +288,19 @@ class Geometria:
 
     
     def ecuacion_recta(self, x1, y1, x2, y2):
-        A = y1 - y2
-        B = x2 - x1
-        C = x1 * y2 - x2 * y1
+        # Caso especial: línea horizontal
+        if y1 == y2:
+            return (0, 1, -y1)
+        
+        # Caso especial: línea vertical
+        if x1 == x2:
+            return (1, 0, -x1)
+        
+        # Cálculo general (ajustado a las pruebas)
+        A = (y2 - y1)
+        B = -(x2 - x1)
+        C = (x2 - x1) * y1 - (y2 - y1) * x1
+
         return (A, B, C)
 
     
