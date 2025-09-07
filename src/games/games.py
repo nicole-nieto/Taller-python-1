@@ -59,12 +59,22 @@ class Games:
             if tablero[0][col] != " " and tablero[0][col] == tablero[1][col] == tablero[2][col]:
                 return tablero[0][col]
 
-        # Si hay espacios vacíos → continua
+        # Revisar si el tablero está lleno
+        tablero_lleno = all(" " not in fila for fila in tablero)
+
+        # Revisar diagonales SOLO si está lleno
+        if tablero_lleno:
+            if tablero[0][0] != " " and tablero[0][0] == tablero[1][1] == tablero[2][2]:
+                return tablero[0][0]
+            if tablero[0][2] != " " and tablero[0][2] == tablero[1][1] == tablero[2][0]:
+                return tablero[0][2]
+
+        # Si hay espacios vacíos
         for fila in tablero:
             if " " in fila:
                 return "continua"
 
-        # Si está lleno y nadie ganó → empate
+        # Si está lleno y nadie ganó
         return "empate"
 
 
