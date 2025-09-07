@@ -18,14 +18,18 @@ class Data:
                 return i
         return -1
     
-    def eliminar_duplicados(self, lista):
+    
+    def eliminar_duplicados(lista):
+        vistos = set()
         resultado = []
-        vistos = {}
         for elem in lista:
-            if elem not in vistos:
+            # Usamos una tupla (tipo, valor) para distinguir 1 de True
+            clave = (type(elem), elem)
+            if clave not in vistos:
+                vistos.add(clave)
                 resultado.append(elem)
-                vistos[elem] = True
         return resultado
+
     
     def merge_ordenado(self, lista1, lista2):
         # Combinar usando el patrón "dos punteros"
