@@ -18,15 +18,14 @@ class Data:
                 return i
         return -1
     
-    
+
     def eliminar_duplicados(lista):
-        vistos = set()
         resultado = []
+        vistos = {}  # diccionario para control eficiente (no usamos set())
         for elem in lista:
-            # Usamos una tupla (tipo, valor) para distinguir 1 de True
-            clave = (type(elem), elem)
+            clave = (type(elem), elem)   # distinguimos por tipo + valor
             if clave not in vistos:
-                vistos.add(clave)
+                vistos[clave] = True
                 resultado.append(elem)
         return resultado
 
