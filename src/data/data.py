@@ -21,11 +21,11 @@ class Data:
 
     def eliminar_duplicados(lista):
         resultado = []
-        vistos = {}  # diccionario para control eficiente (no usamos set())
+        vistos = set()
         for elem in lista:
-            clave = (type(elem), elem)   # distinguimos por tipo + valor
+            clave = (type(elem), elem)   # (tipo, valor) para distinguir True de 1
             if clave not in vistos:
-                vistos[clave] = True
+                vistos.add(clave)
                 resultado.append(elem)
         return resultado
 
