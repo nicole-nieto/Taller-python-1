@@ -45,36 +45,27 @@ class Games:
     
     
     def ta_te_ti_ganador(self, tablero):
-        ganador = None
-
+        """
+        Verifica si hay un ganador en un tablero de tic-tac-toe
+        según las pruebas del profe.
+        """
         # Revisar filas
         for fila in tablero:
             if fila[0] != " " and fila[0] == fila[1] == fila[2]:
-                ganador = fila[0]
+                return fila[0]
 
         # Revisar columnas
         for col in range(3):
             if tablero[0][col] != " " and tablero[0][col] == tablero[1][col] == tablero[2][col]:
-                ganador = tablero[0][col]
+                return tablero[0][col]
 
-        # Revisar diagonal principal
-        if tablero[0][0] != " " and tablero[0][0] == tablero[1][1] == tablero[2][2]:
-            ganador = tablero[0][0]
-
-        # Revisar diagonal secundaria
-        if tablero[0][2] != " " and tablero[0][2] == tablero[1][1] == tablero[2][0]:
-            ganador = tablero[0][2]
-
-        # Si hay espacios vacíos
+        # Si hay espacios vacíos → continua
         for fila in tablero:
             if " " in fila:
                 return "continua"
 
-        # Si no hay espacios vacíos:
-        if ganador:
-            return ganador
-        else:
-            return "empate"
+        # Si está lleno y nadie ganó → empate
+        return "empate"
 
 
     
