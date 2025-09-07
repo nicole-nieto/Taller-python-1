@@ -19,13 +19,13 @@ class Data:
         return -1
     
     def eliminar_duplicados(self, lista):
-        lista_sin_duplicados = []
-        elementos_vistos = {}  # Usamos un diccionario para un seguimiento más preciso
-        for elemento in lista:
-            if elemento not in elementos_vistos:
-                elementos_vistos[elemento] = True
-                lista_sin_duplicados.append(elemento)
-        return lista_sin_duplicados
+        resultado = []
+        vistos = {}
+        for elem in lista:
+            if elem not in vistos:
+                resultado.append(elem)
+                vistos[elem] = True
+        return resultado
     
     def merge_ordenado(self, lista1, lista2):
         # Combinar usando el patrón "dos punteros"
