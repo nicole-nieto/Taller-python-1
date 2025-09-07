@@ -44,39 +44,42 @@ class Games:
             return "muy bajo"
     
     
-    def ta_te_ti_ganador(self, tablero):
-        """
-        Verifica si hay un ganador en un tablero de tic-tac-toe.
-        """
-        # Función auxiliar para verificar si 3 celdas son iguales y no están vacías
-        def verificar_linea(a, b, c):
-            return a != " " and a == b and b == c
-
-        # Verificar filas
-        for fila in tablero:
-            if verificar_linea(fila[0], fila[1], fila[2]):
-                return fila[0]
-
-        # Verificar columnas
-        for col in range(3):
-            if verificar_linea(tablero[0][col], tablero[1][col], tablero[2][col]):
-                return tablero[0][col]
-
-        # Verificar diagonal principal (de arriba izquierda a abajo derecha)
-        if verificar_linea(tablero[0][0], tablero[1][1], tablero[2][2]):
-            return tablero[0][0]
-
-        # Verificar diagonal secundaria (de arriba derecha a abajo izquierda)
-        if verificar_linea(tablero[0][2], tablero[1][1], tablero[2][0]):
-            return tablero[0][2]
+def ta_te_ti_ganador(self, tablero):
+    """
+    Verifica si hay un ganador en un tablero de tic-tac-toe.
+    
+    Args:
+        tablero (list): Matriz 3x3 con valores "X", "O" o " " (espacio vacío)
         
-        # Verificar si hay un empate (tablero lleno sin ganador)
-        tablero_lleno = all(celda != " " for fila in tablero for celda in fila)
-        if tablero_lleno:
-            return "empate"
-        
-        # Si no hay ganador ni empate, el juego continúa
-        return "continua"
+    Returns:
+        str: "X", "O", "empate" o "continua"
+    """
+    # Revisar filas
+    for fila in tablero:
+        if fila[0] != " " and fila[0] == fila[1] == fila[2]:
+            return fila[0]
+
+    # Revisar columnas
+    for col in range(3):
+        if tablero[0][col] != " " and tablero[0][col] == tablero[1][col] == tablero[2][col]:
+            return tablero[0][col]
+
+    # Revisar diagonal principal
+    if tablero[0][0] != " " and tablero[0][0] == tablero[1][1] == tablero[2][2]:
+        return tablero[0][0]
+
+    # Revisar diagonal secundaria
+    if tablero[0][2] != " " and tablero[0][2] == tablero[1][1] == tablero[2][0]:
+        return tablero[0][2]
+
+    # Verificar si hay espacios vacíos
+    for fila in tablero:
+        if " " in fila:
+            return "continua"
+
+    # Si no hay ganador y no hay espacios, es empate
+    return "empate"
+
     
     def generar_combinacion_mastermind(self, longitud, colores_disponibles):
         return [random.choice(colores_disponibles) for _ in range(longitud)]
