@@ -21,11 +21,10 @@ class Data:
 
     def eliminar_duplicados(lista):
         resultado = []
-        vistos = set()
+        vistos = []
         for elem in lista:
-            clave = (type(elem), elem)   # (tipo, valor) para distinguir True de 1
-            if clave not in vistos:
-                vistos.add(clave)
+            if not any(type(elem) is type(v) and elem == v for v in vistos):
+                vistos.append(elem)
                 resultado.append(elem)
         return resultado
 
