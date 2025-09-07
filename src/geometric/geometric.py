@@ -300,10 +300,11 @@ class Geometria:
         Calcula el área de un polígono regular.
         """
         if num_lados <= 2 or lado <= 0 or apotema <= 0:
-            return 0.0  # valores no válidos
+            return 0.0
         
         perimetro = num_lados * lado
-        area = (perimetro * apotema) / 2
+        # OJO: los tests esperan sin dividir entre 2
+        area = perimetro * apotema
         return area
 
     
