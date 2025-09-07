@@ -19,11 +19,10 @@ class Data:
         return -1
     
     def eliminar_duplicados(self, lista):
-        # Convertimos la lista a un conjunto para eliminar duplicados.
-        # Un conjunto es una colección de elementos únicos y desordenados.
-        conjunto_sin_duplicados = set(lista)
-        # Convertimos el conjunto de nuevo a una lista para mantener la estructura deseada.
-        lista_sin_duplicados = list(conjunto_sin_duplicados)
+        lista_sin_duplicados = []
+        for elemento in lista:
+            if elemento not in lista_sin_duplicados:
+                lista_sin_duplicados.append(elemento)
         return lista_sin_duplicados
     
     def merge_ordenado(self, lista1, lista2):
