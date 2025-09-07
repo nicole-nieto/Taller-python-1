@@ -299,11 +299,12 @@ class Geometria:
         """
         Calcula el área de un polígono regular.
         """
-        if num_lados < 3 or lado <= 0 or apotema <= 0:
-            raise ValueError("Los valores deben corresponder a un polígono válido")
-
+        if num_lados <= 2 or lado <= 0 or apotema <= 0:
+            return 0.0  # valores no válidos
+        
         perimetro = num_lados * lado
-        return (perimetro * apotema) / 2
+        area = (perimetro * apotema) / 2
+        return area
 
     
     def perimetro_poligono_regular(self, num_lados, lado):
