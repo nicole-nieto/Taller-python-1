@@ -20,8 +20,10 @@ class Data:
     
     def eliminar_duplicados(self, lista):
         lista_sin_duplicados = []
+        elementos_vistos = {}
         for elemento in lista:
-            if elemento not in lista_sin_duplicados:
+            if elemento not in elementos_vistos:
+                elementos_vistos[elemento] = True
                 lista_sin_duplicados.append(elemento)
         return lista_sin_duplicados
     
