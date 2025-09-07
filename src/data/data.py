@@ -20,7 +20,7 @@ class Data:
     
     def eliminar_duplicados(self, lista):
         lista_sin_duplicados = []
-        elementos_vistos = {}
+        elementos_vistos = {}  # Usa un diccionario para rastrear elementos vistos de forma única
         for elemento in lista:
             if elemento not in elementos_vistos:
                 elementos_vistos[elemento] = True
